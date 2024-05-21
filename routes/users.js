@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 
 const router = express.Router();
 
-// ======= User document minimum requirements ====== //
+// Sample user document structure
 /**
  * {
  *  "email": "test@test.com",
@@ -13,28 +13,20 @@ const router = express.Router();
  * }
  */
 
-// ============== CRUD Operations ====================== //
-
-/**
- * Create a new user
- * POST /users/
- */
+// Create a new user - POST /users/
 router.post('/', async (req, res) => {
   try {
     const collection = await db.collection('users');
     const newUser = req.body;
     const result = await collection.insertOne(newUser);
-    res.status(201).json(result); // Return the full result, which includes insertedId, etc.
+    res.status(201).json(result); // Return full result including insertedId
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-/**
- * Get all users
- * GET /users/
- */
+// Get all users - GET /users/
 router.get('/', async (req, res) => {
   try {
     const collection = await db.collection('users');
@@ -46,10 +38,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-/**
- * Get a single user by the id
- * GET /users/:id
- */
+// Get a single user by ID - GET /users/:id
 router.get('/:id', async (req, res) => {
   try {
     const collection = await db.collection('users');
@@ -66,10 +55,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-/**
- * Update a user by the id
- * PUT /users/:id
- */
+// Update a user by ID - PUT /users/:id
 router.put('/:id', async (req, res) => {
   try {
     const collection = await db.collection('users');
@@ -90,24 +76,18 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-/**
- * Sign in a user
- * POST /users/signin
- */
+// Sign in a user - POST /users/signin
 router.post('/signin', async (req, res) => {
   try {
     const collection = await db.collection('users');
     const { email, password } = req.body;
-
     const user = await collection.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
     if (password !== user.password) {
       return res.status(401).json({ message: 'Incorrect password' });
     }
-
     res.status(200).json(user); // Return the user upon successful sign-in
   } catch (error) {
     console.error('Error signing in user:', error);
@@ -115,10 +95,7 @@ router.post('/signin', async (req, res) => {
   }
 });
 
-/**
- * Delete a user by the id
- * DELETE /users/:id
- */
+// Delete a user by ID - DELETE /users/:id
 router.delete('/:id', async (req, res) => {
   try {
     const collection = await db.collection('users');
@@ -144,10 +121,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-/**
- * Add bulk users
- * POST /users/bulk
- */
+// Add multiple users - POST /users/bulk
 router.post('/bulk', async (req, res) => {
   try {
     const collection = await db.collection('users');
@@ -160,10 +134,7 @@ router.post('/bulk', async (req, res) => {
   }
 });
 
-/**
- * Delete multiple users
- * DELETE /users/bulk
- */
+// Delete multiple users - DELETE /users/bulk
 router.delete('/bulk', async (req, res) => {
   try {
     const collection = await db.collection('users');
@@ -190,6 +161,5 @@ router.delete('/bulk', async (req, res) => {
     }
   }
 });
-
 
 export default router;
