@@ -1,6 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import usersRouter from './routes/users.js';
+import commentsRouter from './routes/comments.js';
+import reviewsRouter from './routes/reviews.js';
+
 
 dotenv.config();
 
@@ -24,6 +27,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', usersRouter);
+app.use('/comments', commentsRouter)
+app.use('/reviews', reviewsRouter)
 
 //! ====== GLOBAL HANDLING ======
 
