@@ -1,7 +1,6 @@
 {
   "name": "sba319",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,6 +12,17 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongodb": "^6.6.2"
-  }
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.0",
+    "morgan": "^1.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fchery87/sba319_MongoDBDatabaseApplication.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Fchery87/sba319_MongoDBDatabaseApplication/issues"
+  },
+  "homepage": "https://github.com/Fchery87/sba319_MongoDBDatabaseApplication#readme",
+  "description": ""
 }
