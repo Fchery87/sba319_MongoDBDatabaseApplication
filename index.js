@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import usersRouter from './routes/users.js';
-import commentsRouter from './routes/comments.js';
+import moviesRouter from './routes/movies.js';
 import reviewsRouter from './routes/reviews.js';
 
 dotenv.config();
@@ -13,30 +13,29 @@ mongoose.connect(process.env.ATLAS_URI);
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-//! ====== MIDDLEWARE ======
-
+// Middleware
 app.use(morgan('dev'));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log('Request from url: ' + req.url);
+  next();
+});
 
-
-//! ====== ROUTES ======
-
+// Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to the SBA 319');
+  res.send('Welcome to the Movie Review App');
 });
 
 app.use('/users', usersRouter);
-app.use('/comments', commentsRouter)
-app.use('/reviews', reviewsRouter)
+app.use('/movies', moviesRouter);
+app.use('/reviews', reviewsRouter);
 
-//! ====== GLOBAL HANDLING ======
-
+// Global error handler
 app.use((err, _req, res, next) => {
+  console.error(err.stack);
   res.status(500).send('Server Error!');
 });
-
-//! ====== LISTENING PORT ======
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
