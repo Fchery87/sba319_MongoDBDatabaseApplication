@@ -1,0 +1,43 @@
+body {
+    font-family: poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+}
+
+.movie-list, .review-list, .user-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.movie-card, .review-card, .user-card {
+    border: 1px solid #ddd;
+    padding: 1em;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.movie-card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1em;
+}

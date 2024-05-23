@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movies</title>
+        <link rel="stylesheet" href="./css/styles.css">
+        <script src="./js/script.js" defer></script>
+        <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <header>
+        <h1>Movie Review App</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="./movies.html">Movies</a>
+            <a href="./reviews.html">Reviews</a>
+            <a href="./users.html">Users</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Movies</h2>
+        <section id="movies-section">
+            <h3>All Movies</h3>
+            <div id="movie-list" class="movie-list"></div>
+        </section>
+        <form id="add-movie-form">
+            <h3>Add a new movie</h3>
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="text" id="description" placeholder="Description">
+            <input type="date" id="releaseDate" placeholder="Release Date" required>
+            <input type="text" id="genre" placeholder="Genre">
+            <input type="text" id="director" placeholder="Director">
+            <button type="submit">Add Movie</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -2,13 +2,20 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import cors from 'cors'; // Use import instead of require
 import usersRouter from './routes/users.js';
 import moviesRouter from './routes/movies.js';
 import reviewsRouter from './routes/reviews.js';
 
 dotenv.config();
 
-mongoose.connect(process.env.ATLAS_URI);
+// Connect to MongoDB
+mongoose.connect(process.env.ATLAS_URI).then(() => {
+  console.log('Connected to database');
+}).catch((error) => {
+  console.error('Failed to connect to the database', error);
+  process.exit(1); // Exit the process if the database connection fails
+});
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,11 +23,7 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(morgan('dev'));
 app.use(express.json());
-
-app.use((req, res, next) => {
-  console.log('Request from url: ' + req.url);
-  next();
-});
+app.use(cors()); // Use the cors middleware
 
 // Routes
 app.get('/', (req, res) => {
