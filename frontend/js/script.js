@@ -25,6 +25,7 @@ function fetchMovies(elementId) {
                 const movieCard = document.createElement('div');
                 movieCard.className = 'movie-card';
                 movieCard.innerHTML = `
+                    <img src="${movie.imageUrl}" alt="${movie.title}" class="movie-cover">
                     <h3>${movie.title}</h3>
                     <p><strong>Director:</strong> ${movie.director}</p>
                     <p><strong>Release Year:</strong> ${movie.releaseYear}</p>
@@ -82,7 +83,8 @@ function handleAddMovie(event) {
         title: document.getElementById('title').value,
         director: document.getElementById('director').value,
         releaseYear: parseInt(document.getElementById('releaseYear').value, 10),
-        genre: document.getElementById('genre').value
+        genre: document.getElementById('genre').value,
+        imageUrl: document.getElementById('imageUrl').value // Ensure imageUrl field is included
     };
 
     fetch('http://localhost:4000/movies', {

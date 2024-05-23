@@ -6,7 +6,7 @@ const movieSchema = new mongoose.Schema({
   releaseDate: { type: Date, required: true },
   genre: { type: String },
   director: { type: String },
-  createdAt: { type: Date, default: Date.now }
+  imageUrl: { type: String }
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
