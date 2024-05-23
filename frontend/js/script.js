@@ -28,8 +28,11 @@ function fetchMovies(elementId) {
                     <img src="${movie.imageUrl}" alt="${movie.title}" class="movie-cover">
                     <h3>${movie.title}</h3>
                     <p><strong>Director:</strong> ${movie.director}</p>
+                    <p><strong>Writers:</strong> ${movie.writers.join(', ')}</p>
+                    <p><strong>Stars:</strong> ${movie.stars.join(', ')}</p>
                     <p><strong>Release Year:</strong> ${movie.releaseYear}</p>
                     <p><strong>Genre:</strong> ${movie.genre}</p>
+                    <p>${movie.description}</p>
                 `;
                 movieList.appendChild(movieCard);
             });
@@ -78,12 +81,15 @@ function fetchUsers(elementId) {
 
 function handleAddMovie(event) {
     event.preventDefault();
-    
+
     const movie = {
         title: document.getElementById('title').value,
         director: document.getElementById('director').value,
+        writers: document.getElementById('writers').value.split(',').map(writer => writer.trim()),
+        stars: document.getElementById('stars').value.split(',').map(star => star.trim()),
         releaseYear: parseInt(document.getElementById('releaseYear').value, 10),
         genre: document.getElementById('genre').value,
+        description: document.getElementById('description').value,
         imageUrl: document.getElementById('imageUrl').value // Ensure imageUrl field is included
     };
 
@@ -104,7 +110,7 @@ function handleAddMovie(event) {
 
 function handleAddReview(event) {
     event.preventDefault();
-    
+
     const review = {
         author: document.getElementById('author').value,
         rating: parseInt(document.getElementById('rating').value, 10),

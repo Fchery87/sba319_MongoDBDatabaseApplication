@@ -12,6 +12,18 @@ export const createMovie = async (req, res) => {
   }
 };
 
+// Create bulk movies
+export const createBulkMovies = async (req, res) => {
+  try {
+    const movies = req.body;
+    const result = await Movie.insertMany(movies);
+    res.status(201).json(result);
+  } catch (error) {
+    console.error('Error creating bulk movies:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 // Get all movies
 export const getAllMovies = async (req, res) => {
   try {
