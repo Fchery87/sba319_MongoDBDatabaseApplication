@@ -66,7 +66,8 @@ main {
 
 form.review-form,
 form#add-review-form,
-form#add-movie-form {
+form#add-movie-form,
+form#signup-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -89,7 +90,9 @@ form#add-review-form select,
 form#add-review-form button,
 form#add-movie-form input,
 form#add-movie-form textarea,
-form#add-movie-form button {
+form#add-movie-form button,
+form#signup-form input,
+form#signup-form button {
     padding: 10px;
     border: 1px solid #3d3d3f; /* Scuffed Dark Grey */
     border-radius: 5px;
@@ -114,7 +117,8 @@ form#add-movie-form select {
 
 form.review-form button,
 form#add-review-form button,
-form#add-movie-form button {
+form#add-movie-form button,
+form#signup-form button {
     background-color: #7dce94; /* Simpler Lime Green */
     color: #3d3d3f; /* Scuffed Dark Grey */
     cursor: pointer;
@@ -125,7 +129,8 @@ form#add-movie-form button {
 
 form.review-form button:hover,
 form#add-review-form button:hover,
-form#add-movie-form button:hover {
+form#add-movie-form button:hover,
+form#signup-form button:hover {
     background-color: #3d3d3f; /* Scuffed Dark Grey */
     color: #f9f8fd; /* White-ish */
 }
@@ -156,7 +161,6 @@ form#add-movie-form button:hover {
     width: 100%;
 }
 
-/* Dropdown list style */
 select, option {
     font-family: 'Poppins', sans-serif;
     background-color: #f9f8fd; /* White-ish */

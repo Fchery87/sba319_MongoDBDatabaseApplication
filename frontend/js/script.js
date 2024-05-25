@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } else if (pathname.includes('users.html')) {
         fetchUsers('user-list');
+        const signupForm = document.getElementById('signup-form');
+        if (signupForm) {
+            signupForm.addEventListener('submit', handleSignUp);
+        }
     } else if (pathname.includes('index.html') || pathname === '/') {
         fetchMovies('home-movie-list');
         const homeReviewList = document.getElementById('home-review-list');
@@ -282,5 +286,79 @@ async function fetchUsers(elementId) {
         });
     } catch (error) {
         console.error('Error fetching users:', error);
+    }
+}
+
+async function handleSignUp(event) {
+    event.preventDefault();
+
+    const user = {
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+    };
+
+    try {
+        const response = await fetch('http://localhost:4000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        console.log('User added:', data);
+        fetchUsers('user-list'); // Refresh the user list
+        document.getElementById('signup-form').reset(); // Clear the form
+    } catch (error) {
+        console.error('Error adding user:', error);
+    }
+}
+
+async function handleAddReviewModal(event) {
+    event.preventDefault();
+
+    const review = {
+        movieId: document.getElementById('movie-id').value,
+        author: document.getElementById('author-modal').value,
+        rating: parseInt(document.getElementById('rating-modal').value, 10),
+        comment: document.getElementById('comment-modal').value
+    };
+
+    try {
+        const response = await fetch('http://localhost:4000/reviews', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(review),
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.json();
+        console.log('Review added:', data);
+        hideWriteReviewModal(); // Hide the modal after adding the review
+        loadReviews(review.movieId); // Refresh the reviews for the movie
+    } catch (error) {
+        console.error('Error adding review:', error);
+    }
+}
+
+function hideWriteReviewModal() {
+    const modal = document.getElementById('write-review-modal');
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('review-modal');
+    const writeReviewModal = document.getElementById('write-review-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    } else if (event.target === writeReviewModal) {
+        writeReviewModal.style.display = 'none';
     }
 }
