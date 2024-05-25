@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reviews</title>
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="./js/script.js" defer></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <h1>Movie Review App</h1>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="./movies.html">Movies</a>
-        <a href="./reviews.html">Reviews</a>
-        <a href="./users.html">Users</a>
-      </nav>
+        <h1>Movie Review App</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="./movies.html">Movies</a>
+            <a href="./reviews.html">Reviews</a>
+            <a href="./users.html">Users</a>
+        </nav>
     </header>
     <main>
-      <h2>Reviews</h2>
-      <form id="add-review-form">
-        <h3>Add a new review</h3>
-        <input type="text" id="author" placeholder="Author" required />
-        <input type="number" id="rating" placeholder="Rating" required />
-        <textarea id="comment" placeholder="Comment" required></textarea>
-        <button type="submit">Add Review</button>
-      </form>
-      <section id="reviews-section">
-        <h3>All Reviews</h3>
-        <div id="review-list" class="review-list"></div>
-      </section>
+        <h2>Reviews</h2>
+        <form id="add-review-form">
+            <h3>Add a new review</h3>
+            <select id="movie-dropdown" required>
+                <option value="">Select a movie</option>
+            </select>
+            <input type="text" id="author" placeholder="Author" required />
+            <input type="number" id="rating" placeholder="Rating" required min="1" max="5" />
+            <textarea id="comment" placeholder="Comment" required></textarea>
+            <button type="submit">Add Review</button>
+        </form>
+        <section id="reviews-section">
+            <h3>All Reviews</h3>
+            <div id="review-list" class="review-list"></div>
+        </section>
     </main>
-  </body>
+</body>
 </html>

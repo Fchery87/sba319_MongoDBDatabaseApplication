@@ -1,4 +1,5 @@
 import Review from '../models/review.js';
+import Movie from '../models/movie.js';
 
 // Create a new review
 export const createReview = async (req, res) => {
@@ -15,7 +16,18 @@ export const createReview = async (req, res) => {
 // Get all reviews
 export const getAllReviews = async (req, res) => {
   try {
-    const reviews = await Review.find({});
+    const reviews = await Review.find({}).populate('movieId', 'title');
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+// Get reviews by movie ID
+export const getReviewsByMovieId = async (req, res) => {
+  try {
+    const reviews = await Review.find({ movieId: req.params.movieId }).populate('movieId', 'title');
     res.status(200).json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
@@ -26,7 +38,7 @@ export const getAllReviews = async (req, res) => {
 // Get a single review by ID
 export const getReviewById = async (req, res) => {
   try {
-    const review = await Review.findById(req.params.id);
+    const review = await Review.findById(req.params.id).populate('movieId', 'title');
     if (!review) {
       res.status(404).json({ message: 'Review not found' });
     } else {
@@ -41,7 +53,7 @@ export const getReviewById = async (req, res) => {
 // Update a review by ID
 export const updateReviewById = async (req, res) => {
   try {
-    const review = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const review = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate('movieId', 'title');
     if (!review) {
       res.status(404).json({ message: 'Review not found' });
     } else {
