@@ -154,10 +154,11 @@ async function loadReviews(movieId) {
             console.error('Element with id reviews-' + movieId + ' not found.');
             return;
         }
+        reviewsElement.innerHTML = ''; // Clear previous reviews
         if (reviews.length === 0) {
             reviewsElement.innerHTML += '<p>No reviews available</p>';
         } else {
-            reviews.forEach(review => {
+            reviews.forEach((review, index) => {
                 const reviewElement = document.createElement('div');
                 reviewElement.classList.add('review');
                 reviewElement.innerHTML = `
@@ -166,12 +167,21 @@ async function loadReviews(movieId) {
                     <p>${review.comment}</p>
                 `;
                 reviewsElement.appendChild(reviewElement);
+
+                // Add a styled divider between reviews
+                if (index < reviews.length - 1) {
+                    const divider = document.createElement('hr');
+                    divider.classList.add('custom-divider');
+                    reviewsElement.appendChild(divider);
+                }
             });
         }
     } catch (error) {
         console.error('Error fetching reviews:', error);
     }
 }
+
+
 
 function toggleReviews(movieId) {
     const reviewsElement = document.getElementById(`reviews-${movieId}`);
