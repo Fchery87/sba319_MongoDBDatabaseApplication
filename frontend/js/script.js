@@ -127,9 +127,9 @@ async function fetchReviews(elementId) {
             const reviewCard = document.createElement('div');
             reviewCard.className = 'review-card';
             reviewCard.innerHTML = `
-                <h3><strong>Author:</strong> ${review.author}</h3>
+                <h3><strong>Username:</strong> ${review.author}</h3>
                 <p><strong>Rating:</strong> ${review.rating}</p>
-                <p>${review.comment}</p>
+                <p><strong>Comment:</strong> ${review.comment}</p>
                 <p><strong>Movie:</strong> ${review.movieId.title || 'Title not available'}</p>
             `;
             reviewList.appendChild(reviewCard);
@@ -162,9 +162,9 @@ async function loadReviews(movieId) {
                 const reviewElement = document.createElement('div');
                 reviewElement.classList.add('review');
                 reviewElement.innerHTML = `
-                    <p><strong>Author:</strong> ${review.author}</p>
+                    <p><strong>Username:</strong> ${review.author}</p>
                     <p><strong>Rating:</strong> ${review.rating}</p>
-                    <p>${review.comment}</p>
+                    <p><strong>Comment:</strong> ${review.comment}</p>
                 `;
                 reviewsElement.appendChild(reviewElement);
 
